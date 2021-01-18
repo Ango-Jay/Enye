@@ -1,0 +1,101 @@
+/*FOOTER*/
+.footerBg {
+  background-color: rgb(75, 26, 131);
+  margin-top: 1rem;
+  padding: 1rem;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+/*FOOTER*/
+/*TEXTS*/
+.text-white {
+  color: white;
+}
+.text-gray {
+  color: gray;
+}
+.text-purple {
+  color: rgb(75, 26, 131);
+}
+.largeFont {
+  font-size: 24px;
+}
+.text-small {
+  height: auto;
+  max-width: 30%;
+  min-width: 5%;
+}
+/*TEXTS*/
+/*LIST*/
+.listStyle {
+  list-style: none;
+}
+/*LIST*/
+/* SEARCH BAR */
+.search {
+  border: none;
+  appearance: none;
+  background: transparent;
+  width: 100%;
+  margin-right: 0.25rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  line-height: 1.25;
+}
+.search:focus {
+  outline: 1px solid transparent;
+  outline-offset: 2px;
+
+  box-shadow: 0 0 2px rgb(75, 26, 131);
+}
+.center {
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+.searchGroup {
+  display: flex;
+  align-items: center;
+  border-bottom-width: 1px;
+  border-bottom-width: 2px;
+  border-color: rgb(75, 26, 131);
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+.searchForm {
+  max-width: 28rem;
+  overflow: hidden;
+  border-radius: 0.25rem;
+}
+
+.searchButton:hover {
+  background-color: rgb(75, 26, 131);
+  color: rgb(255, 255, 255);
+}
+/* SEARCH BAR */
+
+/*CARD */
+.card {
+  max-width: 24rem;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  box-shadow: 0 0 1px gray;
+}
+/*LINKS*/
+a:hover {
+  background-color: white;
+  text-decoration: none;
+  color: rgb(75, 26, 131);
+}
+a {
+  color: white;
+}
+.link-button {
+  background: none;
+  cursor: pointer;
+}
+/*LINKS*/
