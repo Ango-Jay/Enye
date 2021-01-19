@@ -27,6 +27,9 @@
   max-width: 30%;
   min-width: 5%;
 }
+.text-bold {
+  font-weight: bolder;
+}
 /*TEXTS*/
 /*LIST*/
 .listStyle {
@@ -76,6 +79,7 @@
   background-color: rgb(75, 26, 131);
   color: rgb(255, 255, 255);
 }
+
 /* SEARCH BAR */
 
 /*CARD */
@@ -87,9 +91,9 @@
 }
 /*LINKS*/
 a:hover {
-  background-color: white;
-  text-decoration: none;
-  color: rgb(75, 26, 131);
+  background-color: #f8f9fa;
+  text-decoration: none !important;
+  color: rgb(75, 26, 131) !important;
 }
 a {
   color: white;
@@ -99,3 +103,27 @@ a {
   cursor: pointer;
 }
 /*LINKS*/
+/*DISPLAY*/
+.make-inline {
+  display: inline;
+}
+.make-block {
+  display: block !important;
+}
+.max-width {
+  max-width: 50%;
+}
+/*FILTER*/
+.gender-filter {
+  border-radius: 4px;
+  border: 1px solid rgb(75, 26, 131);
+}
+.filter-box {
+  box-shadow: 0 0 1px gray;
+  border-radius: 2px;
+}
+.filter-button {
+  color: white;
+  background-color: rgb(75, 26, 131);
+}
+/*FILTER*/

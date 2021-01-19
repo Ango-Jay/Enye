@@ -3,16 +3,18 @@ import SearchBar from "./searchbar";
 import Card from "./card";
 import AppPagination from "./pagination";
 import { Container, Col, Row } from "reactstrap";
+import FilterButton from "./filterButton";
 
 const CardGrid = () => {
   const [documents, SetDocuments] = useState([]);
   const [isLoading, SetIsLoading] = useState(false);
   const [currentPage, SetCurrentPage] = useState(1);
-  const [documentPerPage] = useState(15);
+  const [documentPerPage] = useState(20);
   const [term, SetTerm] = useState("");
   const [size, SetSize] = useState(0);
+  const success = 1;
   useEffect(() => {
-    fetch(`https://api.enye.tech/v1/challenge/records?${term}`)
+    fetch(`https://api.enye.tech/v1/challenge/records`)
       .then((res) => res.json())
       .then((data) => {
         SetIsLoading(true);
@@ -21,7 +23,7 @@ const CardGrid = () => {
         SetIsLoading(false);
       })
       .catch((err) => console.log(err));
-  }, [term]);
+  }, [success]);
 
   //Get current Document
   const indexOfLastDocument = currentPage * documentPerPage;
@@ -33,9 +35,10 @@ const CardGrid = () => {
   //change page
   const paginate = (pageNumber) => SetCurrentPage(pageNumber);
 
-  if (isLoading === true) {
+  // loading function
+  const showLoading = () => {
     return <h2 className="text-purple text-center">Loading...</h2>;
-  }
+  };
   return (
     <React.Fragment>
       <SearchBar
@@ -43,14 +46,46 @@ const CardGrid = () => {
           SetTerm(text);
         }}
       />
+      <FilterButton
+        filter={(text) => {
+          SetTerm(text);
+        }}
+      />
 
       <Container>
         <Row lg="3" sm="2">
-          {currentDocuments.map((document, index) => (
-            <Col className="mb-2 mt-2 pt-2 pb-2">
-              <Card key={index + 1} document={document} title={index + 1} />
-            </Col>
-          ))}
+          {isLoading === true ? showLoading() : null}
+          {currentDocuments
+            .filter((document) => {
+              if (term === "Male") {
+                return document.Gender.indexOf(term) !== -1;
+              } else if (term === "Female") {
+                return document.Gender.indexOf(term) !== -1;
+              } else if (term === "JCB") {
+                return (
+                  document.FirstName.toUpperCase().indexOf(
+                    term.toUpperCase()
+                  ) !== -1
+                );
+              } else if (term === "") {
+                return (
+                  document.FirstName.toLowerCase().indexOf(
+                    term.toLowerCase()
+                  ) !== -1
+                );
+              } else {
+                return (
+                  document.FirstName.toLowerCase().indexOf(
+                    term.toLowerCase()
+                  ) !== -1
+                );
+              }
+            })
+            .map((document, index) => (
+              <Col className="mb-2 mt-2 pt-2 pb-2">
+                <Card key={index + 1} document={document} title={index + 1} />
+              </Col>
+            ))}
         </Row>
       </Container>
       <Container>

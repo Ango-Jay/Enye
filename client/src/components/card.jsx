@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { ListGroup, ListGroupItem } from "reactstrap";
 
 const Card = (props) => {
   const { document, title } = props;
+  const [stateTitle] = useState(title);
 
   return (
     <div className="card">
       <div className="pl-3 pr-3 pt-2 pb-2">
         <div className="mb-2 font-bold text-center">
           <span className="largeFont">Record</span>
-          <strong className="largeFont ml-2 text-purple">{title}</strong>
+          <strong className="largeFont ml-2 text-purple">{stateTitle}</strong>
         </div>
         <ListGroup className="listStyle">
           <ListGroupItem>

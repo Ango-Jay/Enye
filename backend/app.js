@@ -35,10 +35,10 @@ app.get("/api/rates", (req, res) => {
             rates: Obody.rates,
           },
         };
-        res.send(data);
+        res.json(data);
       } else {
         const Obody = JSON.parse(body);
-        res.status(400).send(Obody.error);
+        res.status(400).json({ msg: Obody.error });
       }
     }
   });
