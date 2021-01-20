@@ -4,10 +4,24 @@ const querystring = require("querystring");
 
 const app = express();
 app.use(express.json());
-const port = 5000 || process.env.PORT;
+const PORT = process.env.PORT || 5000;
+
+// allow CORS
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header(
+    "Content-Security-Policy",
+    "default-src 'self'; font-src 'self'; img-src 'self'; script-src 'self'; style-src 'self'; frame-src 'self'"
+  );
+  next();
+});
 
 //Routes
-
+app.get("favicon.ico", (req, res) => res.status(204).end());
 app.get("/api/rates", (req, res) => {
   // get querystrings from app url
   const qs1 = req.query.base;
@@ -45,6 +59,6 @@ app.get("/api/rates", (req, res) => {
 });
 
 //Routes
-app.listen(port);
-console.log(`server is running on ${port}`);
+app.listen(PORT);
+console.log(`server is running on ${PORT}`);
 module.exports = app;
