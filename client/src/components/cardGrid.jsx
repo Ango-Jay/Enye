@@ -7,23 +7,22 @@ import FilterButton from "./filterButton";
 
 const CardGrid = () => {
   const [documents, SetDocuments] = useState([]);
-  const [isLoading, SetIsLoading] = useState(false);
   const [currentPage, SetCurrentPage] = useState(1);
   const [documentPerPage] = useState(20);
   const [term, SetTerm] = useState("");
   const [size, SetSize] = useState(0);
-  const success = 1;
+  const [dependency, SetDependency] = useState(0);
+
   useEffect(() => {
     fetch(`https://api.enye.tech/v1/challenge/records`)
       .then((res) => res.json())
       .then((data) => {
-        SetIsLoading(true);
         SetDocuments(data.records.profiles);
         SetSize(data.size);
-        SetIsLoading(false);
+        SetDependency(data.status);
       })
       .catch((err) => console.log(err));
-  }, [success]);
+  }, [dependency]);
 
   //Get current Document
   const indexOfLastDocument = currentPage * documentPerPage;
@@ -53,18 +52,27 @@ const CardGrid = () => {
       />
 
       <Container>
+        <Row>
+          <Col>{dependency === 0 ? showLoading() : null}</Col>
+        </Row>
         <Row lg="3" sm="2">
-          {isLoading === true ? showLoading() : null}
           {currentDocuments
             .filter((document) => {
-              if (term === "Male") {
+              if (term === "Male" || term === "Female") {
                 return document.Gender.indexOf(term) !== -1;
-              } else if (term === "Female") {
-                return document.Gender.indexOf(term) !== -1;
-              } else if (term === "JCB") {
+              } else if (term === "credit card") {
                 return (
-                  document.FirstName.toUpperCase().indexOf(
-                    term.toUpperCase()
+                  document.PaymentMethod.toLowerCase().indexOf("cc") !== -1
+                );
+              } else if (
+                term === "money Order" ||
+                term === "paypal" ||
+                term === "check" ||
+                term === "credit card"
+              ) {
+                return (
+                  document.PaymentMethod.toLowerCase().indexOf(
+                    term.toLowerCase()
                   ) !== -1
                 );
               } else if (term === "") {

@@ -3,7 +3,7 @@ import { Container, Input, Button, Form, Row, Col } from "reactstrap";
 
 const SearchBar = (props) => {
   const { searchtext } = props;
-  const [text, SetText] = useState("");
+  const [text, SetText] = useState("O");
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -17,6 +17,20 @@ const SearchBar = (props) => {
           <Col>
             <Form onSubmit={onSubmit}>
               <div className="searchGroup">
+                {text !== "" ? (
+                  <Button
+                    color="danger"
+                    className="my-4"
+                    size="sm"
+                    onClick={() => {
+                      searchtext("");
+                      SetText("");
+                    }}
+                  >
+                    &times;
+                  </Button>
+                ) : null}
+
                 <Input
                   type="search"
                   placeholder="Enter search term"
