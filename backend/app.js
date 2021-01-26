@@ -21,7 +21,9 @@ app.use((req, res, next) => {
 });
 
 //Routes
-app.get("/favicon.ico", (req, res) => res.status(204).end());
+app.get("/", (req, res) => {
+  res.redirect("/api/rates");
+});
 app.get("/api/rates", (req, res) => {
   // get querystrings from app url
   const qs1 = req.query.base;
