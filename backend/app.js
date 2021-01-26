@@ -21,9 +21,13 @@ app.use((req, res, next) => {
 });
 
 //Routes
+<<<<<<< HEAD
 app.get("/", (req, res) => {
   res.redirect("/api/rates");
 });
+=======
+app.get("/favicon.ico", (req, res) => res.status(204).end());
+>>>>>>> backend-deploy
 app.get("/api/rates", (req, res) => {
   // get querystrings from app url
   const qs1 = req.query.base;
